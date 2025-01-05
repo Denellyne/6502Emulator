@@ -3,4 +3,4 @@
 
 ## Emulator for the 6502 Processor written in C++
 
-![image](https://github.com/user-attachments/assets/e612636a-6a20-4c08-adba-91ac8f5044cc)
+![descarregar](https://github.com/user-attachments/assets/af5bfa85-96e1-48ab-9435-1be518302a35)
