@@ -1,6 +1,6 @@
 CFLAGS =
 INCLUDES = core/Cpu/Cpu.cpp core/types.h core/Cpu/Memory/Memory.cpp 
-DEBUG = -g -Wall -Wextra -pedantic
+DEBUG = -g -Wall -Wextra -Wpedantic
 
 % : %.cpp
 	g++ $(CFLAGS) $(INCLUDES) -o $@ $<
