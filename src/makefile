@@ -1,20 +1,25 @@
-CFLAGS =
-INCLUDES = core/Cpu/Cpu.cpp core/types.h core/Cpu/Memory/Memory.cpp 
-DEBUG = core/Debug/Utester/unitTester.hpp -g -Wall -Wextra -Wpedantic
+CXX = g++
+CFLAGS = -fimplicit-constexpr 
+INCLUDES := $(shell find . -name '*.cpp')
+OBJ := $(patsubst %.cpp,%.o,$(INCLUDES))
+DEBUG = -g -Wall -Wextra -pedantic
+OUT = ../bin/main
 
-% : %.cpp
-	g++ $(CFLAGS) $(INCLUDES) -o $@ $<
+%.o: %.cpp 
+	$(CXX) $(CFLAGS) -c $< -o $@  	
+	@echo "Compiled:" $@
 
-run:
+run: $(OBJ)
 	@echo "Compiling..."
-	g++ $(CFLAGS) $(INCLUDES) -o main main.cpp
-	@cls
-	@./main.exe
+	$(CXX) $(CFLAGS) $(OBJ) -o $(OUT) 
+	@$(OUT)
 
-debug:
+debug: 
 	@echo "Compiling..."
-	g++ $(DEBUG) $(CFLAGS) $(INCLUDES) -o main main.cpp
+	$(CXX) $(DEBUG) $(CFLAGS) $(INCLUDES) -o $(OUT)d
 
 clean:
 	@echo "Deleting..."
-	@rm main
+	@rm $(OBJ)
+	@rm $(OUT)
+	@rm $(OUT)d

@@ -13,4 +13,9 @@ private:
   byte fetch();
 
   Memory mem;
+
+  word pc;
+  byte x, y, a, sp;
+
+  bool S, V, B, D, I, Z, C;
 };

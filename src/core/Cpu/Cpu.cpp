@@ -1,4 +1,6 @@
 #include "Cpu.h"
+#include "Memory/Memory.h"
+#include "instructions.h"
 #include <cstdio>
 
 Cpu::Cpu() {
@@ -9,8 +11,28 @@ Cpu::Cpu() {
   execute();
 }
 Cpu::~Cpu() { printf("Quitting...\n"); }
-void Cpu::reset() noexcept { mem.reset(); }
+void Cpu::reset() noexcept {
 
-void Cpu::execute() {}
+  sp = 0x00;
+  pc = 0xFFFC;
+  x = y = a = 0;
+  S = V = B = D = I = Z = C = false;
+  mem.reset();
+}
 
-byte Cpu::fetch() { return mem.fetch(); }
+void Cpu::execute() {
+
+  while (true) {
+    switch (fetch()) {
+    case LDA_Byte:
+      a = fetch();
+      break;
+    default: // NOP
+      break;
+    }
+  }
+}
+byte Cpu::fetch() {
+  byte instruction = mem.fetch(pc);
+  return instruction;
+}
